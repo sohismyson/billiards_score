@@ -72,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Row(
           children: <Widget>[
+            // home player のスコア制御
             Expanded(
               flex: 5,
               child: Container(
@@ -119,25 +120,52 @@ class _MyHomePageState extends State<MyHomePage> {
                 ]),
               ),
             ),
+            // guset playaer のスコア制御
             Expanded(
               flex: 5,
-              child: GestureDetector(
-                onTap: _guestPlayerCounter != 7
-                    ? _guestPlayerIncrementCounter
-                    : () {},
-                child: Container(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      '$_guestPlayerCounter',
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.w600,
+              child: Container(
+                color: Color(0xFF3C3C3C),
+                child: Stack(children: <Widget>[
+                  Container(
+                    constraints: BoxConstraints.expand(),
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        '$_guestPlayerCounter',
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
-                  color: Color(0xFF3C3C3C),
-                ),
+                  Column(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 5,
+                        child: GestureDetector(
+                          onTap: _guestPlayerCounter != 7
+                              ? _guestPlayerIncrementCounter
+                              : () {},
+                          child: Container(
+                            color: Color(0xFFFFFF),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: GestureDetector(
+                          onTap: _guestPlayerCounter != 0
+                              ? _guestPlayerDecrementCounter
+                              : () {},
+                          child: Container(
+                            color: Color(0xFFFFFF),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
               ),
             ),
           ],
