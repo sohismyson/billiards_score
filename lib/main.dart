@@ -43,6 +43,18 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _homePlayerDecrementCounter() {
+    setState(() {
+      _homePlayerCounter--;
+    });
+  }
+
+  void _guestPlayerDecrementCounter() {
+    setState(() {
+      _guestPlayerCounter--;
+    });
+  }
+
   void _scoreReseter() {
     setState(() {
       _homePlayerCounter = 0;
@@ -59,27 +71,52 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
               flex: 5,
-              child: GestureDetector(
-                onTap: _homePlayerCounter != 7
-                    ? _homePlayerIncrementCounter
-                    : () {},
-                child: Container(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      '$_homePlayerCounter',
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.w600,
+              child: Container(
+                color: Color(0xFF3C3C3C),
+                child: Stack(children: <Widget>[
+                  Container(
+                    constraints: BoxConstraints.expand(),
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        '$_homePlayerCounter',
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
-                  color: Color(0xFF3C3C3C),
-                ),
+                  Column(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 5,
+                        child: GestureDetector(
+                          onTap: _homePlayerCounter != 7
+                              ? _homePlayerIncrementCounter
+                              : () {},
+                          child: Container(
+                            color: Color(0xFFFFFF),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: GestureDetector(
+                          onTap: _homePlayerCounter != 0
+                              ? _homePlayerDecrementCounter
+                              : () {},
+                          child: Container(
+                            color: Color(0xFFFFFF),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
               ),
             ),
             Expanded(
