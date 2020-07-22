@@ -106,13 +106,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _scoreReseter,
-        tooltip: 'Increment',
-        label: Text('RESET COUNT'),
-        icon: Icon(Icons.clear),
-        backgroundColor: Color(0xFF696969),
-        elevation: 0.0,
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(bottom: 50.0),
+        child: FloatingActionButton.extended(
+          onPressed: _scoreReseter,
+          label: Text('RESET COUNT'),
+          icon: Icon(Icons.clear),
+          backgroundColor: Color(0xFF696969),
+          elevation: 0.0,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
